@@ -48,11 +48,11 @@ fetch(url)
     }
 
     // Ajouter un événement au bouton "Ajouter au panier"
-    let btnAddToCart = document.getElementById('addToCart');
+    let btnAddToCart = document.getElementById("addToCart");
     btnAddToCart.addEventListener("click", () => {
       // Récupérer la couleur sélectionnée et la quantité depuis l'input
-      let colors = document.getElementById('colors').value;
-      let quantity = document.getElementById('quantity').value;
+      let colors = document.getElementById("colors").value;
+      let quantity = document.getElementById("quantity").value;
 
       // Vérifier si les champs couleur et quantité ne sont pas vides
       if (colors !== "" && quantity !== "" && quantity > 0) {
@@ -82,6 +82,7 @@ fetch(url)
       }
     });
   })
+  
   .catch(error => {
     console.error("Erreur", error);
   });

@@ -5,7 +5,7 @@ let cart = JSON.parse(localStorage.getItem("products")) || [];
 if (cart.length > 0) {
     for (let i = 0; i < cart.length; i++) {
         const product = cart[i];
-        const productList = document.getElementById('cart__items');
+        const productList = document.getElementById("cart__items");
 // Ajouter le HTML pour chaque produit dans le panier
         productList.innerHTML += `
             <article class="cart__item" data-id="${product.id}">
@@ -35,11 +35,11 @@ if (cart.length > 0) {
 
 // Calculer et afficher la quantité totale
 
-let productNumbers = document.getElementById('totalQuantity');
+let productNumbers = document.getElementById("totalQuantity");
 let productInCart = cart.reduce((sum, product) => sum + product.quantity, 0);
 productNumbers.innerHTML = `${productInCart}`;
 // Calculer et afficher le prix total
-let totalPrice = document.getElementById('totalPrice');
+let totalPrice = document.getElementById("totalPrice");
 let priceInCart = cart.reduce((sum, product) => sum + (product.price * product.quantity), 0);
 totalPrice.innerHTML = `${priceInCart} €`;
 
@@ -65,7 +65,7 @@ const regexMail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$/;
 const regexAddress = /^(([a-zA-ZÀ-ÿ0-9]+[\s\-]{1}[a-zA-ZÀ-ÿ0-9]+)){1,10}$/;
 
 // Soumission du formulaire
-const form = document.querySelector('form');
+const form = document.querySelector("form");
 form.addEventListener("submit", (event) => {
     event.preventDefault();
 // Récupérer les données du formulaire
@@ -74,7 +74,8 @@ form.addEventListener("submit", (event) => {
     const contact = Object.fromEntries(formData);
 
     // Extraire les identifiants des produits dans le panier
-    let products = cart.map(productInCart => productInCart.id);
+    let products = cart.map(product => product.id);
+    console.log(products);
 
     // Envoyer les données à l'API
     fetch('http://localhost:3000/api/products/order/', {
