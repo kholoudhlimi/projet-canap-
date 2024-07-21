@@ -69,7 +69,17 @@ fetch(url)
 
         // Récupérer les produits dans le panier depuis localStorage ou initialiser un tableau vide
         let cart = JSON.parse(localStorage.getItem("products")) || [];
-        cart.push(objectProduct);
+        // Vérifier si le produit existe déjà dans le panier
+
+        let existingProductIndex = cart.findIndex(item => item.id === ProductId && item.colors === colors);
+
+        if (existingProductIndex !== -1) {
+          // Si le produit existe déjà, mettre à jour la quantité
+          cart[existingProductIndex].quantity += +quantity;
+        } else {
+          // Sinon, ajouter le nouveau produit au panier
+          cart.push(objectProduct);
+        }
 
         // Mettre à jour les données du panier dans le localStorage
         localStorage.setItem("products", JSON.stringify(cart));
@@ -80,9 +90,10 @@ fetch(url)
         // Afficher un message d'erreur si la couleur ou la quantité est vide
         alert("Veuillez sélectionner une couleur et une quantité");
       }
+
     });
   })
-  
   .catch(error => {
     console.error("Erreur", error);
   });
+
